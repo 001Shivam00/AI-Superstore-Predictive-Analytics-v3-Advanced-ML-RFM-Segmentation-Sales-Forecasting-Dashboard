@@ -1,11 +1,8 @@
 streamlit
 pandas
 numpy
-plotly
 scikit-learn
-ydata-profiling
-prophet
-transformers
-pyttsx3
-folium
-openai
+matplotlib
+seaborn
+plotly
+joblib
