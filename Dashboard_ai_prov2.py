@@ -50,7 +50,7 @@ except ImportError:
     REPORTLAB_AVAILABLE = False
 
 import os
-import google.generativeai as genai
+from google import genai
 import anthropic
 from dotenv import load_dotenv
 import warnings
