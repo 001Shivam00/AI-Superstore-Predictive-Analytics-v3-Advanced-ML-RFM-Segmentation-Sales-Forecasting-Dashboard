@@ -2,14 +2,14 @@ streamlit
 pandas
 numpy
 plotly
-seaborn
 matplotlib
+seaborn
 scikit-learn
 xgboost
 prophet
 statsmodels
 reportlab
-google-generativeai
+google-genai
 anthropic
 python-dotenv
 xlsxwriter
