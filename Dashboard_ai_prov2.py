@@ -685,7 +685,7 @@ html, body, [class*="css"] {{
     background-color: {T['bg_primary']} !important;
     color: {T['text_primary']};
 }}
-#MainMenu, footer, header {{ visibility: hidden; }}
+#MainMenu, footer, header, [data-testid="manage-app-button"] {{ display: none !important; }}
 .block-container {{ padding-top: 0.5rem !important; max-width: 100% !important; width: 100% !important; padding-left: 1rem !important; padding-right: 1rem !important; }}
 div[data-testid="column"] {{ padding-left: 4px !important; padding-right: 4px !important; }}
 
