@@ -131,10 +131,23 @@ div[data-testid="stDecoration"] { display:none !important; }
 div[data-testid="stHeader"]     { display:none !important; }
 div[data-testid="stToolbar"]    { display:none !important; }
 .appview-container .main .block-container { max-width:100% !important; }
+
+/* ✅ Sidebar hamesha visible aur collapse na ho */
+[data-testid="collapsedControl"] { display:none !important; }
+section[data-testid="stSidebar"] {
+    transform: none !important;
+    min-width: 21rem !important;
+    max-width: 21rem !important;
+    visibility: visible !important;
+    display: block !important;
+}
+section[data-testid="stSidebar"][aria-expanded="false"] {
+    transform: none !important;
+    margin-left: 0 !important;
+    min-width: 21rem !important;
+}
 </style>
 """, unsafe_allow_html=True)
-
-
 # ─────────────────────────────────────────────
 # 🎨  THEME SYSTEM
 # ─────────────────────────────────────────────
