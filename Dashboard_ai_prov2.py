@@ -1004,7 +1004,247 @@ elif os.path.exists(DEFAULT_PATH):
     st.sidebar.markdown('<div class="alert-info">📁 Using local dataset</div>', unsafe_allow_html=True)
 else:
     st.sidebar.markdown('<div class="alert-danger">❌ No data found — upload a file above</div>', unsafe_allow_html=True)
-    st.error("❌ No data found. Please upload CSV, Excel, or JSON file from the sidebar.")
+
+    # ══════════════════════════════════════════
+    # 🌟  BEAUTIFUL EMPTY STATE / WELCOME SCREEN
+    # ══════════════════════════════════════════
+    st.markdown(f"""
+    <style>
+    @keyframes fadeInUp {{
+        from {{ opacity: 0; transform: translateY(30px); }}
+        to   {{ opacity: 1; transform: translateY(0);    }}
+    }}
+    @keyframes float {{
+        0%,100% {{ transform: translateY(0px);   }}
+        50%      {{ transform: translateY(-12px); }}
+    }}
+    @keyframes shimmer {{
+        0%   {{ background-position: -200% center; }}
+        100% {{ background-position:  200% center; }}
+    }}
+    @keyframes spin {{
+        from {{ transform: rotate(0deg);   }}
+        to   {{ transform: rotate(360deg); }}
+    }}
+    .welcome-wrap {{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        padding: 40px 20px;
+        animation: fadeInUp 0.8s ease both;
+    }}
+    .welcome-icon {{
+        font-size: 5rem;
+        animation: float 3s ease-in-out infinite;
+        margin-bottom: 16px;
+        filter: drop-shadow(0 8px 24px {T['accent1_glow']});
+    }}
+    .welcome-title {{
+        font-family: 'Syne', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, {T['accent1']}, {T['accent2']}, {T['accent3']});
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 3s linear infinite;
+        text-align: center;
+        margin-bottom: 10px;
+    }}
+    .welcome-subtitle {{
+        color: {T['text_secondary']};
+        font-size: 1.1rem;
+        text-align: center;
+        max-width: 520px;
+        line-height: 1.7;
+        margin-bottom: 40px;
+    }}
+    .feature-grid {{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        max-width: 860px;
+        width: 100%;
+        margin-bottom: 40px;
+        animation: fadeInUp 0.8s ease 0.2s both;
+    }}
+    .feature-card {{
+        background: {T['bg_card']};
+        border: 1px solid {T['border']};
+        border-radius: 16px;
+        padding: 20px 16px;
+        text-align: center;
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        cursor: default;
+    }}
+    .feature-card:hover {{
+        transform: translateY(-6px);
+        border-color: {T['border_strong']};
+        box-shadow: 0 12px 32px {T['accent1_glow']};
+    }}
+    .feature-card-icon  {{ font-size: 2rem; margin-bottom: 10px; }}
+    .feature-card-title {{
+        font-family: 'Syne', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: {T['text_primary']};
+        margin-bottom: 6px;
+        letter-spacing: 0.04em;
+    }}
+    .feature-card-desc  {{
+        font-size: 0.74rem;
+        color: {T['text_muted']};
+        line-height: 1.5;
+    }}
+    .steps-row {{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        max-width: 640px;
+        width: 100%;
+        margin-bottom: 36px;
+        animation: fadeInUp 0.8s ease 0.4s both;
+    }}
+    .step-item {{
+        flex: 1;
+        background: {T['bg_card']};
+        border: 1px solid {T['border']};
+        border-radius: 14px;
+        padding: 16px 12px;
+        text-align: center;
+    }}
+    .step-num {{
+        font-family: 'Syne', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: {T['accent1']};
+    }}
+    .step-text {{
+        font-size: 0.76rem;
+        color: {T['text_secondary']};
+        margin-top: 4px;
+        line-height: 1.4;
+    }}
+    .step-arrow {{
+        font-size: 1.4rem;
+        color: {T['text_muted']};
+    }}
+    .formats-row {{
+        display: flex;
+        gap: 12px;
+        animation: fadeInUp 0.8s ease 0.6s both;
+        margin-bottom: 24px;
+    }}
+    .format-badge {{
+        background: {T['accent1_fill']};
+        border: 1px solid {T['accent1_border']};
+        border-radius: 10px;
+        padding: 8px 20px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: {T['accent1']};
+        letter-spacing: 0.08em;
+    }}
+    .powered-row {{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 600px;
+        animation: fadeInUp 0.8s ease 0.8s both;
+    }}
+    .powered-chip {{
+        background: {T['bg_secondary']};
+        border: 1px solid {T['border']};
+        border-radius: 20px;
+        padding: 5px 14px;
+        font-size: 0.74rem;
+        color: {T['text_muted']};
+        font-family: 'IBM Plex Mono', monospace;
+    }}
+    </style>
+
+    <div class="welcome-wrap">
+
+      <!-- Floating Icon -->
+      <div class="welcome-icon">🧠</div>
+
+      <!-- Title -->
+      <div class="welcome-title">AI Superstore Analytics</div>
+      <div class="welcome-subtitle">
+        Upload your trading or retail data and unlock <b style="color:{T['accent1']}">ML forecasts</b>,
+        <b style="color:{T['accent2']}">RFM customer scoring</b>,
+        <b style="color:{T['accent3']}">profit analysis</b>, and
+        AI-powered insights — all in one dashboard.
+      </div>
+
+      <!-- Feature Cards -->
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-card-icon">📈</div>
+          <div class="feature-card-title">Sales Trends</div>
+          <div class="feature-card-desc">Monthly, quarterly & YoY analysis with rolling averages</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🤖</div>
+          <div class="feature-card-title">ML Forecasting</div>
+          <div class="feature-card-desc">XGBoost, Prophet & ARIMA predictions up to 12 months</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🎯</div>
+          <div class="feature-card-title">RFM Scoring</div>
+          <div class="feature-card-desc">Segment customers into Champions, Loyal, At Risk & more</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">💬</div>
+          <div class="feature-card-title">Ask Gemini & Claude</div>
+          <div class="feature-card-desc">Get AI answers from your data using natural language</div>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="steps-row">
+        <div class="step-item">
+          <div class="step-num">①</div>
+          <div class="step-text">Click <b>Upload</b> in the sidebar</div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-item">
+          <div class="step-num">②</div>
+          <div class="step-text">Choose your data file</div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-item">
+          <div class="step-num">③</div>
+          <div class="step-text">Explore all 8 tabs instantly</div>
+        </div>
+      </div>
+
+      <!-- Format Badges -->
+      <div class="formats-row">
+        <div class="format-badge">📄 CSV</div>
+        <div class="format-badge">📊 XLSX / XLS</div>
+        <div class="format-badge">🗂️ JSON</div>
+      </div>
+
+      <!-- Powered by chips -->
+      <div class="powered-row">
+        <div class="powered-chip">⚡ XGBoost</div>
+        <div class="powered-chip">🔮 Prophet</div>
+        <div class="powered-chip">📉 ARIMA</div>
+        <div class="powered-chip">🔵 Gemini</div>
+        <div class="powered-chip">🟠 Claude</div>
+        <div class="powered-chip">📊 Plotly</div>
+        <div class="powered-chip">🐼 Pandas</div>
+      </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
     st.stop()
 # ─────────────────────────────────────────────
 # 🔍  SIDEBAR FILTERS
